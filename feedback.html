@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirecting to Form...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h2>Collecting browser information and redirecting...</h2>
+  <div class="loader"></div>
+  <p>You will be redirected to the form automatically.</p>
+  
+  <script>
+    // Function to collect browser info and redirect
+    function redirectToPrefilledForm() {
+      // Form URL and entry ID
+      const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdCnPlUUToROISCySCa6ZVykGuoQ3FlPQtUFQgQLcM_yneCBQ/viewform";
+      const entryId = "entry.1592635932";
+      
+      // Get browser details
+      const userAgent = navigator.userAgent;
+      const screenWidth = screen.width;
+      const screenHeight = screen.height;
+      const browserLanguage = navigator.language;
+      const platform = navigator.platform;
+      
+      // Split the content into two parts
+      // Part 1: Browser user agent (will be URL encoded)
+      const agentPart = userAgent;
+      
+      // Part 2: Additional info (will be kept as readable text)
+      const infoPart = ` (Screen: ${screenWidth}x${screenHeight}, Language: ${browserLanguage}, Platform: ${platform})`;
+      
+      // Construct the pre-filled URL with better formatting
+      // Only encode the userAgent part, leave the rest as readable text
+      const preFilledUrl = `${formBaseUrl}?${entryId}=${encodeURIComponent(agentPart)}${encodeURIComponent(infoPart)}`;
+      
+      // Log the URL for debugging
+      console.log("Redirecting to:", preFilledUrl);
+      
+      // Redirect to the form
+      window.location.href = preFilledUrl;
+    }
+    
+    // Run the function when the page loads
+    window.onload = redirectToPrefilledForm;
+  </script>
+</body>
+</html>
