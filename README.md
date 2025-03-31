@@ -1,2 +1,2 @@
-# public
+# Public
 Open to the public
