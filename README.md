@@ -1,2 +1,2 @@
 # Public
-Open to the public
+We're open.
